@@ -5,12 +5,26 @@ import './nav.css';
 export default function Nav(props) {
     return (
         <nav>
-            <ul>
+            <ul className="clearfix">
                 <li>
-                    <a>What?</a>
+                    <a
+                        href="#what"
+                        className="what"
+                        aria-label="How to play"
+                    >
+                        What?
+                    </a>
                 </li>
+
                 <li>
-                    <a>+ New Game</a>
+                    <a
+                        href="#feedback"
+                        className="new"
+                        aria-label="Start a new game"
+                        onClick={() => props.onRestartGame()}
+                    >
+                        + New Game
+                    </a>
                 </li>
             </ul>
         </nav>

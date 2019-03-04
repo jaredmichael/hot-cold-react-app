@@ -1,10 +1,9 @@
 import React from 'react';
 
-import './game.css';
-
 import Header from './header.js';
 import GuessSection from './guess-section.js';
 import StatusSection from './status-section.js';
+import Info from './info.js';
 
 export default class Game extends React.Component {
     constructor(props) {
@@ -54,5 +53,29 @@ export default class Game extends React.Component {
         });
 
         document.title = feedback ? `${feedback} | Hot or Cold` : 'Hot or Cold';
+    }
+
+    render() {
+        const { feedback, guesses } = this.state;
+        const guessCount = guesses.length;
+
+        return (
+            <div>
+                <Header
+                    onRestartGame={() => this.restartGame()}
+                />
+                <main role="main">
+                    <GuessSection
+                        feedback={feedback}
+                        guessCount={guessCount}
+                        onMakeGuess={guess => this.makeGuess(guess)}
+                    />
+                    <StatusSection 
+                        guesses={guesses}
+                    />
+                    <Info />
+                </main>
+            </div>
+        );
     }
 }
